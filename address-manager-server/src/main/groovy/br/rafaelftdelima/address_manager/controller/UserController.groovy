@@ -27,7 +27,8 @@ class UserController {
 
     @PostMapping
     ResponseEntity<User> createUser(@RequestBody User user) {
-        return ResponseEntity.ok(userService.createUser(user))
+        def created = userService.createUser(user)
+        return new ResponseEntity<>(created, HttpStatus.CREATED)
     }
 
     @PutMapping("/{id}")

@@ -15,13 +15,13 @@ abstract class BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id
+    private Long id
 
     @Column(nullable = false)
-    LocalDateTime creation
+    private LocalDateTime creation
 
     @Column(name = "last_update", nullable = false)
-    LocalDateTime lastUpdate
+    private LocalDateTime lastUpdate
 
     @PrePersist
     void onCreate() {

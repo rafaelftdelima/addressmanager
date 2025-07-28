@@ -27,7 +27,7 @@ class UserService {
 
     @Transactional
     User createUser(User user) {
-        def existing = userRepository.findByCpf(user.cpf)
+        def existing = userRepository.findByCpf(user.getCpf())
 
         if (existing.isPresent()) {
             throw new IllegalArgumentException("CPF já cadastrado.")
@@ -41,16 +41,16 @@ class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow { new EntityNotFoundException("Usuário com ID $id não encontrado.") }
 
-        if (user.cpf != userDetails.cpf) {
-            def cpfCheck = userRepository.findByCpf(userDetails.cpf)
+        if (user.getCpf() != userDetails.getCpf()) {
+            def cpfCheck = userRepository.findByCpf(userDetails.getCpf())
 
-            if (cpfCheck.isPresent() && cpfCheck.get().id != id) {
-                throw new IllegalArgumentException("CPF '${userDetails.cpf}' já está em uso.")
+            if (cpfCheck.isPresent() && cpfCheck.get().getId() != id) {
+                throw new IllegalArgumentException("CPF '${userDetails.getCpf()}' já está em uso.")
             }
         }
 
-        user.name = userDetails.name
-        user.cpf = userDetails.cpf
+        user.setName(userDetails.getName())
+        user.setCpf(userDetails.getCpf())
 
         return userRepository.save(user)
     }

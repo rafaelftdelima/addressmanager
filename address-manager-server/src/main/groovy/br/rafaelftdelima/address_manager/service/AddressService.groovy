@@ -32,7 +32,8 @@ class AddressService {
         def user = userRepository.findById(userId)
                 .orElseThrow { new EntityNotFoundException("Usuário com ID $userId não encontrado.") }
 
-        address.user = user
+        address.setUser(user)
+
         return addressRepository.save(address)
     }
 
@@ -40,13 +41,13 @@ class AddressService {
     Address updateAddress(Long id, Address updatedAddress) {
         Address address = getAddressById(id)
 
-        address.address = updatedAddress.address
-        address.complement = updatedAddress.complement
-        address.neighborhood = updatedAddress.neighborhood
-        address.city = updatedAddress.city
-        address.cep = updatedAddress.cep
-        address.state = updatedAddress.state
-        address.type = updatedAddress.type
+        address.setAddress(updatedAddress.getAddress())
+        address.setComplement(updatedAddress.getComplement())
+        address.setNeighborhood(updatedAddress.getNeighborhood())
+        address.setCity(updatedAddress.getCity())
+        address.setCep(updatedAddress.getCep())
+        address.setState(updatedAddress.getState())
+        address.setType(updatedAddress.getState())
 
         return addressRepository.save(address)
     }
@@ -56,6 +57,7 @@ class AddressService {
         if (!addressRepository.existsById(id)) {
             throw new EntityNotFoundException("Endereço com ID $id não encontrado.")
         }
+
         addressRepository.deleteById(id)
     }
 }

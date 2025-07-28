@@ -10,29 +10,29 @@ class Address extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    User user
+    private User user
 
     @Column(nullable = false)
-    String address
+    private String address
 
     @Column(nullable = false)
-    String complement
+    private String complement
 
     @Column(nullable = false)
-    String neighborhood
+    private String neighborhood
 
     @Column(nullable = false)
-    String cep
+    private String cep
 
     @Column(nullable = false)
-    String city
+    private String city
 
     @Column(nullable = false)
-    String state
+    private String state
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    AddressType type
+    private AddressType type
 
     User getUser() {
         return user

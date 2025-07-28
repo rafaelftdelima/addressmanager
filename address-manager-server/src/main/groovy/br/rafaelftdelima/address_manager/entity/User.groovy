@@ -7,10 +7,10 @@ import jakarta.persistence.*
 class User extends BaseEntity {
 
     @Column(nullable = false)
-    String name
+    private String name
 
     @Column(nullable = false, unique = true)
-    String cpf
+    private String cpf
 
     @OneToMany(mappedBy = "user",
             cascade = CascadeType.ALL,

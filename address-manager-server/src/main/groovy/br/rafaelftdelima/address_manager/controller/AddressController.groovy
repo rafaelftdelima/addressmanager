@@ -27,7 +27,8 @@ class AddressController {
 
     @PostMapping("/user/{userId}")
     ResponseEntity<Address> createAddress(@PathVariable("userId") Long userId, @RequestBody Address address) {
-        return ResponseEntity.ok(addressService.createAddress(userId, address))
+        def created = addressService.createAddress(userId, address)
+        return new ResponseEntity<>(created, HttpStatus.CREATED)
     }
 
     @PutMapping("/{id}")
