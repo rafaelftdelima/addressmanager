@@ -22,6 +22,9 @@ class Address extends BaseEntity {
     String neighborhood
 
     @Column(nullable = false)
+    String cep
+
+    @Column(nullable = false)
     String city
 
     @Column(nullable = false)
@@ -61,6 +64,14 @@ class Address extends BaseEntity {
 
     void setNeighborhood(String neighborhood) {
         this.neighborhood = neighborhood
+    }
+
+    String getCep() {
+        return cep
+    }
+
+    void setCep(String cep) {
+        this.cep = cep
     }
 
     String getCity() {
